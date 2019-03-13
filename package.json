@@ -1,7 +1,7 @@
 {
     "name": "webpack-site-template",
-    "version": "0.0.1",
-    "description": "webpack-website-template",
+    "version": "0.0.2",
+    "description": "webpack static site template by Levi",
     "main": "./src/js/app.js",
     "scripts": {
         "build": "webpack --progress --watch",
@@ -23,6 +23,7 @@
         "babel-preset-env": "^1.7.0",
         "babel-preset-es2015": "^6.24.1",
         "css-loader": "^0.28.11",
+        "emit-file-loader": "0.0.2",
         "eslint": "^4.19.1",
         "eslint-loader": "^1.9.0",
         "eslint-plugin-jsx-a11y": "^5.1.1",
@@ -36,7 +37,7 @@
         "node-sass": "^4.11.0",
         "npm": "^5.10.0",
         "rimraf": "^2.6.3",
-        "sass": "^1.17.0",
+        "sass": "^1.17.2",
         "sass-loader": "^7.1.0",
         "style-loader": "^0.18.2",
         "webpack": "^3.12.0"

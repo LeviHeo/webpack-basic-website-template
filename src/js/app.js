@@ -1,5 +1,10 @@
 import '../css/style.scss';
 
+function importAll(r) {
+  return r.keys().map(r);
+}
+importAll(require.context('../img', false, /\.(png|jpe?g|svg)$/));
+
 var Affix = function (element, options) {
     this.options = $.extend({}, Affix.DEFAULTS, options)
 

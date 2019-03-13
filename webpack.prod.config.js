@@ -1,4 +1,4 @@
-const path = require('path');
+//const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -6,8 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: ["babel-polyfill", "./src/js/app.js"],
     output: {
-        filename: 'app.js',
-        path: __dirname + '/dist/static/js/',
+        filename: 'static/js/app.js',
+        path: __dirname + '/dist/',
         publicPath: './'
     },
 
@@ -34,19 +34,24 @@ module.exports = {
                     ],
                 }) 
             },
-        {
-            test: /\.(jpe?g|png|gif)$/i,
-            loader: "file-loader",
-            query: {
-                name: '[name].[ext]',
-                outputPath: '../img/'
-            }
-        }, {
+            {
+                test: /\.(jpe?g|png|gif|svg|ico)$/i,
+                exclude: /(fonts)/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'static/img/'
+                    }
+                }]
+            },
+             {
             enforce: "pre",
             test: /\.js$/,
             exclude: /node_modules/,
             loader: "eslint-loader"
-        }, {
+            }, 
+            {
             test: /\.js$/,
             exclude: /(node_modules)/,
             use: {
@@ -69,7 +74,7 @@ module.exports = {
                 loader: 'file-loader',
                 options: {
                     name: '[name].[ext]',
-                    outputPath: '../fonts/'
+                    outputPath: 'static/fonts/'
                 }
             }]
         }, {
@@ -110,8 +115,13 @@ module.exports = {
             }
         }),
         new ExtractTextPlugin({
-            filename:'../css/style.css',
+            filename:'static/css/style.css',
             allChunks: true
+        }),
+        new HtmlWebpackPlugin({  
+            filename: 'index.html',
+            chunks: ["index"],
+            template: 'src/index.html'
         })
     ]
 };
